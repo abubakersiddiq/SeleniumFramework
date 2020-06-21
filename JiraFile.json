@@ -1,0 +1,13 @@
+{
+    "fields": {
+       "project":
+       {
+          "key": "MAY"
+       },
+       "summary": "Bug ",
+       "description": "Bug Created  Using REST API via Postman Abu",
+       "issuetype": {
+          "name": "Bug"
+       }
+   }
+}
