@@ -8,17 +8,19 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class CreateNewChange {
+public class CreateNewChange  {
 
 	RequestSpecification request; 
 	Response response;
 
 	@Given("the base URI")
 	public void baseURI() {
-		RestAssured.baseURI="https://dev63720.service-now.com/api/now/v2/table/change_request";
+		
+		RestAssured.baseURI="";
 
 	}
 
@@ -46,11 +48,14 @@ public class CreateNewChange {
 		response= request.post();
 
 	}
-	@Then("status code should be (.*)")
+
+	@Then("status code should be {int}")
 	public void verifyStatus(int code) {
 
 		response.then().assertThat().statusCode(code);
 
 	}
+	
+	
 
 }
