@@ -12,5 +12,6 @@ public class CucumberBase {
 	public String resource="/rest/api/2";
 	
 	String getIssueId;
+	int status_code;
 
 }

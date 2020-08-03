@@ -3,52 +3,42 @@ package steps;
 import java.io.File;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 public class CreateNewlssueInJira extends CucumberBase {
-
-	RequestSpecification request; 
-	Response response;
-
-	/*@Given("the base URI")
-	public void baseURI() {
-		
+	
+	/*@Given("base uri for jira")
+	public void base_uri_for_jira() {
+	    // Write code here that turns the phrase above into concrete actions
 		RestAssured.baseURI="https://"+serverName+resource+"/";
-
+	    
 	}
 
-	@And("set basic authentication")
-	public void setAuthentation() {
-
-		RestAssured.authentication=RestAssured.basic("admin", "Admin@123");
-
+	@And("send userAuth")
+	public void send_userAuth() {
+	    // Write code here that turns the phrase above into concrete actions
+		RestAssured.authentication = RestAssured.basic("rajalakshmi.govindarajan@testleaf.com", "kEJxzmhkQzvdeP8iysWN2D1B");
 	}*/
-	@And("add body from (.*)")
-	public void setBody(String fileName) {
+
+	@When("create a new issue in jira using (.*)$")
+	public void createNewIssue(String fileName) {
+	    // Write code here that turns the phrase above into concrete actions
 		
-		File file=new File("./"+fileName);
-
-		request = RestAssured
-				.given()
-				.contentType(ContentType.JSON)
-				.body(file);
-
+		response = RestAssured
+				   .given()
+				   .contentType(ContentType.JSON)
+				   .body(new File(fileName))
+				   .post("issue/")
+				   .then()
+				   .log()
+				   .all()
+				   .extract().response();
+	    
 	}
-
-	@When("post the request")
-	public void placeRequest() {
-
-		response= request.post("issue/");
-
-	}
-
+	
 	@And("get the id number")
 	public void getIDNumber() {
 		
@@ -58,13 +48,10 @@ public class CreateNewlssueInJira extends CucumberBase {
 
 	}
 
-	@Then("status code should be {int}")
-	public void verifyStatus(int code) {
-
-		response.then().assertThat().statusCode(code);
-
+	@Then("verify the status code is {int}")
+	public void verify_the_status_code_is(int code) {
+	    // Write code here that turns the phrase above into concrete actions
+	    response.then().assertThat().statusCode(code);
 	}
-	
-	
 
 }

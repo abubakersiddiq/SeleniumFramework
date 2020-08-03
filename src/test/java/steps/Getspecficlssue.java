@@ -8,7 +8,7 @@ public class Getspecficlssue extends CucumberBase {
 	
 	
 @And("get specific issue with issueNo")
-	public void get_all_the_request_issue_type_from_jira() {
+	public void getSpecificIssue() {
 	    // Write code here that turns the phrase above into concrete actions
 		
 		response = RestAssured.get("issuetype/"+getIssueId)

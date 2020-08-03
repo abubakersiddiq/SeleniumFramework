@@ -25,14 +25,7 @@ public class PostChangeRequestRestAssureJsonFile {
 		
 		RestAssured.authentication=RestAssured.basic("admin", "Admin@123");
 		
-		//Maps 
-		
-		
-		  HashMap<String, String>paramters=new HashMap<String, String>();
-		  
-		  paramters.put("type", "emergency");
-		  paramters.put("sysparm_fields", "sys_id,type");
-		
+
 		Response response=
 				RestAssured
 				.given()

@@ -11,7 +11,7 @@ public class GetlssueTypeFromJira extends CucumberBase {
 	public void base_uri_for_jira() {
 	    // Write code here that turns the phrase above into concrete actions
 		//"https://api-mar2020.atlassian.net/rest/api/2/issuetype"
-		RestAssured.baseURI="https://"+serverName+resource+"/";
+		RestAssured.baseURI="https://"+serverName+resource+"/";	
 	    
 	}
 
@@ -36,6 +36,8 @@ public class GetlssueTypeFromJira extends CucumberBase {
 	@Then("verify the status code is {int}")
 	public void verify_the_status_code_is(int code) {
 	    // Write code here that turns the phrase above into concrete actions
+		status_code=response.getStatusCode();
+		System.out.println(" status is : " +status_code);
 	    response.then().assertThat().statusCode(code);
 	}
 

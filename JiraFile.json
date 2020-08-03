@@ -5,7 +5,7 @@
           "key": "MAY"
        },
        "summary": "Bug ",
-       "description": "Bug Created  Using REST API via Postman Abu",
+       "description": "Bug Created  Using REST API via cucumber Abu",
        "issuetype": {
           "name": "Bug"
        }
